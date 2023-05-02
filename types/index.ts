@@ -3,3 +3,8 @@ export type Form = {
   password: string
   age: number
 }
+export type Todo = {
+  id: number
+  created_at: string
+  title: string
+}
