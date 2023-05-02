@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  app:
+    container_name: sample-mantine-ui
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - sample_mantine_ui_volumes:/app/node_modules
+      - ./:/app:cached
+
+volumes:
+  sample_mantine_ui_volumes:
