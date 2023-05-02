@@ -13,11 +13,26 @@ import {
 } from '@mantine/core'
 import { Layout } from '../components/Layout'
 
+const initialValues: TransferListData = [
+  [
+    { value: 'c', label: 'C' },
+    { value: 'cpp', label: 'C++' },
+    { value: 'rust', label: 'Rust' },
+    { value: 'py', label: 'Python' },
+    { value: 'js', label: 'JavaScript' },
+    { value: 'go', label: 'Golang' },
+  ],
+  [],
+]
+
 const MultiSelectDemo = () => {
   const [radioValue, setRadioValue] = useState('react')
   const [selectValue, setSelectValue] = useState<string[]>([])
+  const [transferValue, setTransferValue] =
+    useState<TransferListData>(initialValues)
 
-  console.log(selectValue)
+  console.log(transferValue)
+
   return (
     <Layout title="Multi Select">
       <Container>
@@ -44,7 +59,22 @@ const MultiSelectDemo = () => {
           placeholder="Select items"
           clearable
         />
+        <TransferList
+          className="text-center"
+          my="lg"
+          value={transferValue}
+          onChange={setTransferValue}
+          searchPlaceholder="Search..."
+          nothingFound="..."
+          titles={['w/o GC', 'w GC']}
+          breakpoint="sm"
+        />
       </Container>
+      <Center>
+        <Link href="/">
+          <ReplyIcon className="mt-4 h-6 w-6 cursor-pointer text-gray-300" />
+        </Link>
+      </Center>
     </Layout>
   )
 }
