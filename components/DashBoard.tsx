@@ -26,6 +26,27 @@ export const DashBoard = () => {
           >
             Button
           </Menu.Item>
+          <Menu.Item
+            icon={<Settings size={16} />}
+            component={NextLink}
+            href="/grid"
+          >
+            Grid
+          </Menu.Item>
+          <Menu.Item
+            icon={<Settings size={16} />}
+            component={NextLink}
+            href="/group"
+          >
+            Group
+          </Menu.Item>
+          <Menu.Item
+            icon={<Settings size={16} />}
+            component={NextLink}
+            href="/multi-select"
+          >
+            Multi Select
+          </Menu.Item>
         </Menu>
       </Center>
       <Center>
