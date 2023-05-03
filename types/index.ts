@@ -17,3 +17,12 @@ export type AuthForm = {
   confirmPassword: string
   termsOfService: boolean
 }
+
+export type Post = {
+  id: number
+  created_at: string
+  title: string
+  content: string
+  post_url: string
+  status: string
+}

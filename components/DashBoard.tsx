@@ -75,6 +75,13 @@ export const DashBoard = () => {
           >
             Avatar
           </Menu.Item>
+          <Menu.Item
+            icon={<Settings size={16} />}
+            component={NextLink}
+            href="/card"
+          >
+            Card
+          </Menu.Item>
         </Menu>
       </Center>
       <Center>
