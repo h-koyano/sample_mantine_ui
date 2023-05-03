@@ -2,7 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Layout } from '../components/Layout'
 import { useQueryPerformance } from '../hooks/useQueryPerformance'
 import { supabase } from '../utils/supabase'
-import { Container, Text, Timeline } from '@mantine/core'
+import {
+  Center,
+  Container,
+  Grid,
+  RingProgress,
+  Space,
+  Text,
+  Timeline,
+} from '@mantine/core'
 import { GitBranch } from 'tabler-icons-react'
 
 const Performance = () => {
@@ -91,6 +99,79 @@ const Performance = () => {
           </Timeline>
         )}
       </Container>
+      <Space h="xl" />
+      {data && (
+        <Grid>
+          <Grid.Col md={6} lg={3}>
+            <Center>
+              <Text color="gray">Efficiency</Text>
+            </Center>
+            <Center>
+              <RingProgress
+                size={140}
+                thickness={14}
+                sections={[{ value: data.efficiency, color: 'indigo' }]}
+                label={
+                  <Text color="blue" weight={700} align="center" size="xl">
+                    {data.efficiency}%
+                  </Text>
+                }
+              />
+            </Center>
+          </Grid.Col>
+          <Grid.Col md={6} lg={3}>
+            <Center>
+              <Text color="gray">Comfort</Text>
+            </Center>
+            <Center>
+              <RingProgress
+                size={140}
+                thickness={14}
+                sections={[{ value: data.comfort, color: 'pink' }]}
+                label={
+                  <Text color="blue" weight={700} align="center" size="xl">
+                    {data.comfort}%
+                  </Text>
+                }
+              />
+            </Center>
+          </Grid.Col>
+          <Grid.Col md={6} lg={3}>
+            <Center>
+              <Text color="gray">Durability</Text>
+            </Center>
+            <Center>
+              <RingProgress
+                size={140}
+                thickness={14}
+                sections={[{ value: data.durability, color: 'cyan' }]}
+                label={
+                  <Text color="blue" weight={700} align="center" size="xl">
+                    {data.durability}%
+                  </Text>
+                }
+              />
+            </Center>
+          </Grid.Col>
+          <Grid.Col md={6} lg={3}>
+            <Center>
+              <Text color="gray">Luck</Text>
+            </Center>
+            <Center>
+              <RingProgress
+                size={140}
+                thickness={14}
+                sections={[{ value: data.luck, color: 'orange' }]}
+                label={
+                  <Text color="blue" weight={700} align="center" size="xl">
+                    {data.luck}%
+                  </Text>
+                }
+              />
+            </Center>
+          </Grid.Col>
+        </Grid>
+      )}
     </Layout>
   )
 }
