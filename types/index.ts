@@ -8,3 +8,12 @@ export type Todo = {
   created_at: string
   title: string
 }
+
+export type AuthForm = {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
+  confirmPassword: string
+  termsOfService: boolean
+}
