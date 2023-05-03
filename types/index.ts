@@ -26,3 +26,14 @@ export type Post = {
   post_url: string
   status: string
 }
+
+export type Performance = {
+  id: number
+  created_at: string
+  efficiency: number
+  comfort: number
+  luck: number
+  durability: number
+  user_id: string
+  level: number
+}
