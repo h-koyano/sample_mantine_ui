@@ -3,6 +3,8 @@ import { useQuery, useQueryClient } from 'react-query'
 import { supabase } from '../utils/supabase'
 import { SupabaseRealtimePayload } from '@supabase/supabase-js'
 import { Performance } from '../types'
+import { showNotification } from '@mantine/notifications'
+import { DatabaseExport } from 'tabler-icons-react'
 
 export const useQueryPerformance = () => {
   const queryClient = useQueryClient()
@@ -19,6 +21,13 @@ export const useQueryPerformance = () => {
           luck: payload.new.luck,
           user_id: payload.new.user_id,
           level: payload.new.level,
+        })
+        showNotification({
+          title: 'Someone updated the perfomances table',
+          message: payload.new.user_id,
+          icon: <DatabaseExport />,
+          color: 'teal',
+          autoClose: 3000,
         })
       })
       .on('DELETE', (payload: SupabaseRealtimePayload<Performance>) => {
