@@ -89,6 +89,13 @@ export const DashBoard = () => {
           >
             Performance Indicator
           </Menu.Item>
+          <Menu.Item
+            icon={<Settings size={16} />}
+            component={NextLink}
+            href="/table"
+          >
+            Table
+          </Menu.Item>
         </Menu>
       </Center>
       <Center>
