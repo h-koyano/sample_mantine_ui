@@ -1,7 +1,7 @@
 import React from 'react'
 import { Layout } from '../components/Layout'
-import { Button, Dialog, Group, Text, TextInput } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks'
+import { Button, Center, Dialog, Group, Text, TextInput } from '@mantine/core'
+import { useDisclosure, useToggle } from '@mantine/hooks'
 import Link from 'next/link'
 import { ReplyIcon } from '@heroicons/react/solid'
 
@@ -10,6 +10,7 @@ const MantineHooks = () => {
     onOpen: () => console.log('Opened'),
     onClose: () => console.log('Closed'),
   })
+  const [btnColor, toggleBtnColor] = useToggle('yellow', ['yellow', 'violet'])
   return (
     <Layout title="Hooks">
       <Dialog
@@ -38,10 +39,15 @@ const MantineHooks = () => {
           Close dialog
         </Button>
 
+        <Button color={btnColor} compact onClick={() => toggleBtnColor()}>
+          Toggle color
+        </Button>
+      </Group>
+      <Center>
         <Link href="/">
           <ReplyIcon className="mt-4 h-6 w-6 cursor-pointer text-gray-300" />
         </Link>
-      </Group>
+      </Center>
     </Layout>
   )
 }
