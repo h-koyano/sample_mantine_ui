@@ -1,15 +1,23 @@
 import { useEffect, useState } from 'react'
 import { Layout } from '../components/Layout'
 import {
+  Avatar,
   Button,
   Center,
   Dialog,
   Group,
+  Indicator,
   Paper,
   Text,
   TextInput,
 } from '@mantine/core'
-import { useDisclosure, useHover, useInterval, useToggle } from '@mantine/hooks'
+import {
+  useDisclosure,
+  useHover,
+  useIdle,
+  useInterval,
+  useToggle,
+} from '@mantine/hooks'
 import Link from 'next/link'
 import { ReplyIcon } from '@heroicons/react/solid'
 import { intervalToDuration } from 'date-fns'
@@ -23,6 +31,7 @@ const MantineHooks = () => {
   const [seconds, setSeconds] = useState(0)
   const interval = useInterval(() => setSeconds((s) => s + 1), 1000)
   const { hovered, ref: refHover } = useHover()
+  const idle = useIdle(3000)
   useEffect(() => {
     interval.start()
     return interval.stop
@@ -52,6 +61,18 @@ const MantineHooks = () => {
           }`}
           ref={refHover}
         ></Paper>
+        <Indicator
+          size={16}
+          offset={7}
+          position="bottom-end"
+          color={idle ? 'yellow' : 'green'}
+          withBorder
+        >
+          <Avatar
+            size="lg"
+            src={`${process.env.NEXT_PUBLIC_SUPABASE_STORAGE_URL}/avatars/0.6669519047527235.png`}
+          />
+        </Indicator>
       </Group>
       <Dialog
         opened={opened}
