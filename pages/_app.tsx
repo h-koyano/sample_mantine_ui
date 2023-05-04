@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app'
 import { MantineProvider } from '@mantine/core'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { NotificationsProvider } from '@mantine/notifications'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +26,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           fontFamily: 'Verdana, sans-serif',
         }}
       >
-        <Component {...pageProps} />
+        <NotificationsProvider limit={2}>
+          <Component {...pageProps} />
+        </NotificationsProvider>
       </MantineProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
