@@ -96,6 +96,13 @@ export const DashBoard = () => {
           >
             Table
           </Menu.Item>
+          <Menu.Item
+            icon={<Settings size={16} />}
+            component={NextLink}
+            href="/crypto"
+          >
+            Crypto
+          </Menu.Item>
         </Menu>
       </Center>
       <Center>
