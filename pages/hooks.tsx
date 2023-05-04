@@ -4,10 +4,14 @@ import {
   Avatar,
   Button,
   Center,
+  Code,
   Dialog,
+  Grid,
   Group,
   Indicator,
+  Loader,
   Paper,
+  Progress,
   Text,
   TextInput,
 } from '@mantine/core'
@@ -16,11 +20,13 @@ import {
   useHover,
   useIdle,
   useInterval,
+  useMove,
   useToggle,
 } from '@mantine/hooks'
 import Link from 'next/link'
 import { ReplyIcon } from '@heroicons/react/solid'
 import { intervalToDuration } from 'date-fns'
+import { BrandGithub } from 'tabler-icons-react'
 
 const MantineHooks = () => {
   const [opened, handlers] = useDisclosure(false, {
@@ -32,6 +38,8 @@ const MantineHooks = () => {
   const interval = useInterval(() => setSeconds((s) => s + 1), 1000)
   const { hovered, ref: refHover } = useHover()
   const idle = useIdle(3000)
+  const [currentPos, setCurrentPos] = useState({ x: 0.2, y: 0.6 })
+  const { ref: refPosition, active } = useMove(setCurrentPos)
   useEffect(() => {
     interval.start()
     return interval.stop
@@ -104,6 +112,49 @@ const MantineHooks = () => {
           Toggle color
         </Button>
       </Group>
+      <Grid my="xl">
+        <Grid.Col span={6}>
+          <Group direction="column" position="center">
+            <div ref={refPosition} className="relative h-48 w-96 bg-gray-700">
+              <BrandGithub
+                className="absolute h-6 w-6 cursor-pointer text-pink-700"
+                style={{
+                  left: `calc(${currentPos.x * 100}% - 12px)`,
+                  top: `calc(${currentPos.y * 100}% - 12px)`,
+                }}
+              />
+            </div>
+            <Text>
+              <Code>
+                {`{x: ${Math.round(currentPos.x * 100)}, y: ${Math.round(
+                  currentPos.y * 100
+                )}}`}
+              </Code>
+            </Text>
+          </Group>
+        </Grid.Col>
+        <Grid.Col span={6}>
+          <Group direction="column" position="center">
+            <Progress
+              my="md"
+              className="w-80"
+              color="teal"
+              radius="lg"
+              value={currentPos.x * 100}
+              animate
+            />
+            <Progress
+              my="md"
+              className="w-80"
+              color="indigo"
+              radius="lg"
+              value={currentPos.y * 100}
+              animate
+            />
+            {active && <Loader my="md" variant="bars" />}
+          </Group>
+        </Grid.Col>
+      </Grid>
       <Center>
         <Link href="/">
           <ReplyIcon className="mt-4 h-6 w-6 cursor-pointer text-gray-300" />
